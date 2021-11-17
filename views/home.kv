@@ -1,0 +1,77 @@
+
+<HomeMainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: 1,1,1,1
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDBoxLayout:
+                id: banner
+                orientation: 'vertical'
+                size_hint_y: None
+                height: dp(200)
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 10
+                        origin: self.pos
+                    Color:
+                        rgba: [1, 1, 1, 1]
+                    Rectangle:
+                        size: self.width + dp(30), self.height + dp(10)
+                        pos: self.pos
+                        source: "assets/image.png"
+                canvas.after:
+                    PopMatrix
+            MDFloatLayout:
+                size_hint_y: None
+                height: title.height / 2
+                MDLabel:
+                    id: title
+                    pos_hint: {'center_x': .5}
+                    center_y: banner.y + (banner.height * .1)
+                    text: "KIVY+MD"
+                    font_size: sp(19)
+                    halign: "center"
+                    adaptive_width: True
+                    size_hint_y: None
+                    height: self.width
+                    md_bg_color: app.theme_cls.primary_color
+                    color: 1,1,1
+                    radius: [dp((self.height))]
+            ScrollView:
+                bar_width: 0
+                always_overscroll: False
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    padding: dp(40), 0
+                    spacing: dp(30)
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        spacing: dp(5)
+                        MDTextField:
+                            hint_text: "EMAIL"
+                        MDTextField:
+                            hint_text: "PASSWORD"
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        spacing: dp(15)
+                        MDRaisedButton:
+                            text: "[color=#FFFFFF][b]SIGN IN[/b][/color]"
+                            size_hint_x: 1
+                            markup: True
+                        MDLabel:
+                            text:
+                                "DON'T HAVE AN ACCOUNT? [color=" + \
+                                H(app.theme_cls.primary_dark) + \
+                                "][ref=signup]SIGN UP[/ref][/color]"
+                            on_ref_press: print(self.refs)
+                            adaptive_height: True
+                            font_style: "Caption"
+                            color: .5,.5,.5
+                            markup: True
+                            bold: True
+                            halign: "center"
